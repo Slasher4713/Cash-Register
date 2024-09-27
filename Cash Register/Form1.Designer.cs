@@ -51,6 +51,8 @@
             this.receiptButton = new System.Windows.Forms.Button();
             this.recieptOutput = new System.Windows.Forms.Label();
             this.orderButton = new System.Windows.Forms.Button();
+            this.secretButton = new System.Windows.Forms.Button();
+            this.achievementLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // logoLabel
@@ -63,6 +65,7 @@
             this.logoLabel.Size = new System.Drawing.Size(803, 45);
             this.logoLabel.TabIndex = 0;
             this.logoLabel.Text = "Creamer\'s Pastries";
+            this.logoLabel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.logoLabel_MouseDoubleClick);
             // 
             // donutsInput
             // 
@@ -252,7 +255,6 @@
             this.changeLabel.TabIndex = 18;
             this.changeLabel.Text = "Change";
             this.changeLabel.Visible = false;
-            this.changeLabel.Click += new System.EventHandler(this.changeLabel_Click);
             // 
             // changeOutput
             // 
@@ -306,12 +308,38 @@
             this.orderButton.Visible = false;
             this.orderButton.Click += new System.EventHandler(this.orderButton_Click);
             // 
+            // secretButton
+            // 
+            this.secretButton.BackColor = System.Drawing.Color.PaleGreen;
+            this.secretButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.secretButton.ForeColor = System.Drawing.Color.PaleGreen;
+            this.secretButton.Location = new System.Drawing.Point(346, 403);
+            this.secretButton.Name = "secretButton";
+            this.secretButton.Size = new System.Drawing.Size(184, 55);
+            this.secretButton.TabIndex = 24;
+            this.secretButton.UseVisualStyleBackColor = false;
+            this.secretButton.Visible = false;
+            this.secretButton.Click += new System.EventHandler(this.secretButton_Click);
+            // 
+            // achievementLabel
+            // 
+            this.achievementLabel.AutoSize = true;
+            this.achievementLabel.Font = new System.Drawing.Font("MV Boli", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.achievementLabel.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.achievementLabel.Location = new System.Drawing.Point(430, 9);
+            this.achievementLabel.Name = "achievementLabel";
+            this.achievementLabel.Size = new System.Drawing.Size(75, 16);
+            this.achievementLabel.TabIndex = 25;
+            this.achievementLabel.Text = "Achievements";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
             this.ClientSize = new System.Drawing.Size(643, 470);
+            this.Controls.Add(this.achievementLabel);
+            this.Controls.Add(this.logoLabel);
             this.Controls.Add(this.orderButton);
             this.Controls.Add(this.recieptOutput);
             this.Controls.Add(this.receiptButton);
@@ -333,7 +361,7 @@
             this.Controls.Add(this.cookiesInput);
             this.Controls.Add(this.donutsLabel);
             this.Controls.Add(this.donutsInput);
-            this.Controls.Add(this.logoLabel);
+            this.Controls.Add(this.secretButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Creamer\'s Pastries";
@@ -367,6 +395,8 @@
         private System.Windows.Forms.Button receiptButton;
         private System.Windows.Forms.Label recieptOutput;
         private System.Windows.Forms.Button orderButton;
+        private System.Windows.Forms.Button secretButton;
+        private System.Windows.Forms.Label achievementLabel;
     }
 }
 

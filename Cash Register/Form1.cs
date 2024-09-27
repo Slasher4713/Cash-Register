@@ -25,6 +25,7 @@ namespace Cash_Register
         double tendered;
         double change;
         double order;
+        double hidden;
         
         //Global sound players
         SoundPlayer di = new SoundPlayer(Properties.Resources.ding);
@@ -38,6 +39,7 @@ namespace Cash_Register
         private void Form1_Load(object sender, EventArgs e)
         {
             order = 1;
+            hidden = 1;
         }
 
         private void calcButton_Click(object sender, EventArgs e)
@@ -109,6 +111,11 @@ namespace Cash_Register
                     receiptButton.Enabled = true;
                     receiptButton.Visible = true;
                     changeLabel.Visible = true;
+                    if (tendered >= 1000)
+                    {
+                        achievementLabel.Text += "\n~Big Boy~";
+                    }
+                        
 
                     //Play "ding sound
                     di.Play();
@@ -179,6 +186,7 @@ namespace Cash_Register
             Refresh();
 
             //Let new order button be usable
+            secretButton.Visible = true;
             orderButton.Enabled = true;
             orderButton.Visible = true;
            
@@ -213,15 +221,81 @@ namespace Cash_Register
             tenderedInput.Visible = false;
             changeLabel.Visible = false;
             recieptOutput.Visible = false;
+            secretButton.Visible = false;
             order++;
 
 
 
         }
 
-        private void changeLabel_Click(object sender, EventArgs e)
+        private void secretButton_Click(object sender, EventArgs e)
         {
+            recieptOutput.Visible = true;
+            recieptOutput.Text = $"\n                                          ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                                          ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                                          ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n     ~---~                         ~---~  ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n       O                             O    ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                                          ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                                          ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                    ^^                    ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                    OO                    ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                                          ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n          _________________________       ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n               |            |             ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n               |            |             ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n               |____________|              ";
+            Refresh();
+            Thread.Sleep(250);
+            recieptOutput.Text += $"\n                                          ";
 
+        }
+
+        private void logoLabel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            hidden++;
+            if (hidden == 2)
+            {
+                logoLabel.Text = "What do you call a fish with no eye?";
+
+            }
+            if (hidden == 3)
+            {
+                logoLabel.Text = "FSHHHH";
+            }
+            else if (hidden == 4)
+            {
+                hidden = 1;
+                logoLabel.Text = "Creamer's Pastries";
+            }
+
+           
         }
     }
 }
