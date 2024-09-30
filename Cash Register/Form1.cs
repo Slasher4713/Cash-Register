@@ -164,15 +164,28 @@ namespace Cash_Register
             recieptOutput.Text += $"\n          September 24th 2024";
             Refresh();
             Thread.Sleep(250);
-            recieptOutput.Text += $"\n\nDonuts                   x{donut} @ 1.99";
+            if (donut > 0)
+            {
+                recieptOutput.Text += $"\n\nDonuts                   x{donut} @ 1.99";
+            }
+            else
+            {
+                recieptOutput.Text += $"\n ";
+            }
             Refresh();
             Thread.Sleep(250);
-            recieptOutput.Text += $"\nCookies                  x{cookie} @ 1.25";
-            Refresh();
-            Thread.Sleep(250);
-            recieptOutput.Text += $"\nCake                     x{cake} @ 8.99";
-            Refresh();
-            Thread.Sleep(250);
+            if (cookie > 0)
+            {
+              recieptOutput.Text += $"\nCookies                  x{cookie} @ 1.25";
+                Refresh();
+                Thread.Sleep(250);
+            }
+            if (cake > 0)
+            {
+                recieptOutput.Text += $"\nCake                     x{cake} @ 8.99";
+                Refresh();
+                Thread.Sleep(250);
+            }
             recieptOutput.Text += $"\n\nSubtotal                 {subtotal.ToString("C")}";
             print.Play();
             Refresh();
