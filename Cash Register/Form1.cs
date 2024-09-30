@@ -130,7 +130,7 @@ namespace Cash_Register
                     di.Play();
                 }
                 else {
-                    //Display error
+                    //Display the change needed if it is not enough
                     changeneeded = total - tendered;
                     changeOutput.Text = $"{changeneeded.ToString("C")} Needed";
                 }
