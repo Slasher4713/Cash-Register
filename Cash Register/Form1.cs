@@ -26,6 +26,8 @@ namespace Cash_Register
         double change;
         double order;
         double hidden;
+        double bigboy;
+        double changeneeded;
         
         //Global sound players
         SoundPlayer di = new SoundPlayer(Properties.Resources.ding);
@@ -38,8 +40,10 @@ namespace Cash_Register
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Set varibles to equal one
             order = 1;
             hidden = 1;
+            bigboy = 0;
         }
 
         private void calcButton_Click(object sender, EventArgs e)
@@ -113,7 +117,12 @@ namespace Cash_Register
                     changeLabel.Visible = true;
                     if (tendered >= 1000)
                     {
-                        achievementLabel.Text += "\n~Big Boy~";
+
+                        if (bigboy == 0)
+                        {
+                            achievementLabel.Text += "\n~Big Boy~";
+                        }
+                        bigboy = 1;
                     }
                         
 
@@ -122,19 +131,21 @@ namespace Cash_Register
                 }
                 else {
                     //Display error
-                    changeOutput.Text = "Error";
+                    changeneeded = total - tendered;
+                    changeOutput.Text = $"{changeneeded.ToString("C")} Needed";
                 }
 
             }
             catch
             {
                 //Display error
-                changeOutput.Text = "Error";
+                changeOutput.Text = $"Error";
             }
         }
 
         private void receiptButton_Click(object sender, EventArgs e)
         {
+            receiptButton.Enabled = false;
             //Play reciept sound
             print.Play();
             recieptOutput.Visible = true;
@@ -223,6 +234,7 @@ namespace Cash_Register
             recieptOutput.Visible = false;
             secretButton.Visible = false;
             order++;
+            receiptButton.Enabled = true;
 
 
 
@@ -230,6 +242,7 @@ namespace Cash_Register
 
         private void secretButton_Click(object sender, EventArgs e)
         {
+            //display a face is secret button is found on the receipt
             recieptOutput.Visible = true;
             recieptOutput.Text = $"\n                                          ";
             Refresh();
@@ -279,9 +292,11 @@ namespace Cash_Register
 
         private void logoLabel_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            //If you click the label, change the logo and play a joke
             hidden++;
             if (hidden == 2)
             {
+                achievementLabel.Visible = false;
                 logoLabel.Text = "What do you call a fish with no eye?";
 
             }
@@ -293,6 +308,7 @@ namespace Cash_Register
             {
                 hidden = 1;
                 logoLabel.Text = "Creamer's Pastries";
+                achievementLabel.Visible = true;
             }
 
            
