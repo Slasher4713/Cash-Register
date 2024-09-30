@@ -164,6 +164,8 @@ namespace Cash_Register
             recieptOutput.Text += $"\n          September 24th 2024";
             Refresh();
             Thread.Sleep(250);
+
+            // If a varible is valued at 0, don't print it on the receipt
             if (donut > 0)
             {
                 recieptOutput.Text += $"\n\nDonuts                   x{donut} @ 1.99";
