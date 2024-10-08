@@ -16,8 +16,11 @@ namespace Cash_Register
     {
         //Global varibles
         double donut;
+        double dPrice;
         double cookie;
+        double cookPrice;
         double cake;
+        double cakePrice;
         double subtotal;
         double tax;
         double taxAmount;
@@ -28,14 +31,14 @@ namespace Cash_Register
         double hidden;
         double bigboy;
         double changeneeded;
-        
+
         //Global sound players
         SoundPlayer di = new SoundPlayer(Properties.Resources.ding);
         SoundPlayer print = new SoundPlayer(Properties.Resources.Printer);
         public Form1()
         {
             InitializeComponent();
-           
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,6 +47,10 @@ namespace Cash_Register
             order = 1;
             hidden = 1;
             bigboy = 0;
+            dPrice = 1.99;
+            cakePrice = 8.99;
+            cookPrice = 1.25;
+            tax = 0.13;
         }
 
         private void calcButton_Click(object sender, EventArgs e)
@@ -59,7 +66,7 @@ namespace Cash_Register
                 // Cookie price is $1.25
                 // Cake price is $8.99
                 // Calculate subtotal price and display it
-                subtotal = (donut * 1.99) + (cookie * 1.25) + (cake * 8.99);
+                subtotal = (donut * dPrice) + (cookie * cookPrice) + (cake * cakePrice);
                 subtotalOutput.Text = $"{subtotal.ToString("C")}";
 
                 //This line is in case the error goes off before, so it can reset
@@ -85,8 +92,9 @@ namespace Cash_Register
                 totalLabel.Visible = true;
                 tenderedLabel.Visible = true;
                 tenderedInput.Visible = true;
-                
+
             }
+
             catch
             // Try to catch the errors and display errors
             {
@@ -105,8 +113,9 @@ namespace Cash_Register
             {
                 //Convert tendred money into a double and store it in a varible
                 tendered = Convert.ToDouble(tenderedInput.Text);
-               
+
                 //If the tendered is less than the amount required, output an error
+
                 if (tendered >= total)
                 {
                     //Calculate and display change
@@ -124,18 +133,21 @@ namespace Cash_Register
                         }
                         bigboy = 1;
                     }
-                        
+
 
                     //Play "ding sound
                     di.Play();
                 }
-                else {
+
+                else
+                {
                     //Display the change needed if it is not enough
                     changeneeded = total - tendered;
                     changeOutput.Text = $"{changeneeded.ToString("C")} Needed";
                 }
 
             }
+
             catch
             {
                 //Display error
@@ -166,28 +178,34 @@ namespace Cash_Register
             Thread.Sleep(250);
 
             // If a varible is valued at 0, don't print it on the receipt
+
             if (donut > 0)
             {
                 recieptOutput.Text += $"\n\nDonuts                   x{donut} @ 1.99";
             }
+
             else
             {
                 recieptOutput.Text += $"\n ";
             }
+
             Refresh();
             Thread.Sleep(250);
+
             if (cookie > 0)
             {
-              recieptOutput.Text += $"\nCookies                  x{cookie} @ 1.25";
+                recieptOutput.Text += $"\nCookies                  x{cookie} @ 1.25";
                 Refresh();
                 Thread.Sleep(250);
             }
+
             if (cake > 0)
             {
                 recieptOutput.Text += $"\nCake                     x{cake} @ 8.99";
                 Refresh();
                 Thread.Sleep(250);
             }
+
             recieptOutput.Text += $"\n\nSubtotal                 {subtotal.ToString("C")}";
             print.Play();
             Refresh();
@@ -208,14 +226,14 @@ namespace Cash_Register
             Refresh();
             Thread.Sleep(250);
             recieptOutput.Text += $"\n\n          ";
-         
+
             Refresh();
 
             //Let new order button be usable
             secretButton.Visible = true;
             orderButton.Enabled = true;
             orderButton.Visible = true;
-           
+
 
 
 
@@ -309,12 +327,14 @@ namespace Cash_Register
         {
             //If you click the label, change the logo and play a joke
             hidden++;
+
             if (hidden == 2)
             {
                 achievementLabel.Visible = false;
                 logoLabel.Text = "What do you call a fish with no eye?";
 
             }
+
             if (hidden == 3)
             {
                 logoLabel.Text = "FSHHHH";
@@ -325,8 +345,6 @@ namespace Cash_Register
                 logoLabel.Text = "Creamer's Pastries";
                 achievementLabel.Visible = true;
             }
-
-           
         }
     }
 }
